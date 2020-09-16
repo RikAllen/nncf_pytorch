@@ -118,6 +118,24 @@ class NonWeightQuantizerInfo:
 
 @COMPRESSION_ALGORITHMS.register('quantization')
 class QuantizationBuilder(CompressionAlgorithmBuilder):
+<<<<<<< HEAD
+=======
+    __DEFAULT_QUANTIZER_CONFIG_INTN =QuantizerConfig.create(bits=8,
+                                                               mode=QuantizationMode.SYMMETRIC,
+                                                               signedness_to_force=None,
+                                                               per_channel=False)
+    __DEFAULT_QUANTIZER_CONFIG_BFP = QuantizerConfig.create(bits=5,
+                                                              mode=QuantizationMode.BLOCKFP,
+                                                              block_size=32,
+                                                              exponent_bits=5,
+                                                              per_channel=False)
+    @staticmethod
+    def get_default_quantizer_config(mode=None):
+        if mode == QuantizationMode.BLOCKFP:
+            return QuantizationBuilder.__DEFAULT_QUANTIZER_CONFIG_BFP
+        return QuantizationBuilder.__DEFAULT_QUANTIZER_CONFIG_INTN 
+
+>>>>>>> Subclass QuantizerConfig for block floating point and intN quantization using a factory.
     def __init__(self, config, should_init: bool = True):
         super().__init__(config, should_init)
 
@@ -203,7 +221,11 @@ class QuantizationBuilder(CompressionAlgorithmBuilder):
         mode = None
         if constraints is not None:
             mode = constraints.qconf_attr_vs_constraint_dict['mode']
+<<<<<<< HEAD
         qconfig = deepcopy(QuantizerConfig.get_default_quantizer_config(mode))
+=======
+        qconfig = deepcopy(QuantizationBuilder.get_default_quantizer_config(mode))
+>>>>>>> Subclass QuantizerConfig for block floating point and intN quantization using a factory.
         if constraints is not None:
             qconfig = constraints.apply_constraints_to(qconfig)
         return qconfig
@@ -255,7 +277,11 @@ class QuantizationBuilder(CompressionAlgorithmBuilder):
         return full_pattern
 
     def get_potential_quantized_modules(self,
+<<<<<<< HEAD
                                         target_model: NNCFNetwork,
+=======
+                                        target_model: NNCFNetwork, 
+>>>>>>> Subclass QuantizerConfig for block floating point and intN quantization using a factory.
                                         hw_config=None) -> List[PotentialQuantizedModule]:
         modules = target_model.get_nncf_modules()
         insertion_point_graph = target_model.get_insertion_point_graph(hw_config=hw_config)

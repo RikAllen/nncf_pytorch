@@ -578,6 +578,15 @@ class QuantizerPropagationSolver:
        when the model has the most contol flow graph edges quantized according to HW
        capabilities."""
 
+<<<<<<< HEAD
+=======
+    DEFAULT_QUANTIZATION_TYPES = [QuantizerConfig.create(
+        bits=8,
+        mode=QuantizationMode.SYMMETRIC,
+        signedness_to_force=None,
+        per_channel=False)]
+
+>>>>>>> Subclass QuantizerConfig for block floating point and intN quantization using a factory.
     def __init__(self, ignored_scopes=None, hw_config: HWConfig = None,
                  debug_interface: 'QuantizationDebugInterface' = None,
                  propagation_strategy: PropagationStrategy = PropagationStrategy.AGGRESSIVE,
