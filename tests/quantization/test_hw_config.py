@@ -55,7 +55,7 @@ class TestHWConfigRules:
 
     @staticmethod
     def quantizer_has_default_config(quantizer: BaseQuantizer) -> bool:
-        default_qconfig = QuantizerConfig.get_default_quantizer_config()
+        default_qconfig = QuantizationBuilder.get_default_quantizer_config()
         is_ok = True
         is_ok &= (quantizer.num_bits == default_qconfig.bits)
         is_ok &= (quantizer.per_channel == default_qconfig.per_channel)
