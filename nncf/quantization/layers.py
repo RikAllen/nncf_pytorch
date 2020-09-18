@@ -42,13 +42,6 @@ class QuantizerConfig:
     # Blocks direct access to the __init__
     __create_key = object()
 
-<<<<<<< HEAD
-    # Default quantizer configurations for different notes - lazy construction via the getter
-    __DEFAULT_QUANTIZER_CONFIG_INTN = None
-    __DEFAULT_QUANTIZER_CONFIG_BFP = None
-
-=======
->>>>>>> Subclass QuantizerConfig for block floating point and intN quantization using a factory.
     def __init__(self,
                  create_key,
                  bits,
@@ -94,27 +87,6 @@ class QuantizerConfig:
                                    per_channel=per_channel,
                                    input_shape=input_shape,
                                    is_weights=is_weights)
-<<<<<<< HEAD
-
-    @classmethod
-    def get_default_quantizer_config(cls, mode=None):
-        # Lazy construction
-        if cls.__DEFAULT_QUANTIZER_CONFIG_INTN is None:
-            cls.__DEFAULT_QUANTIZER_CONFIG_INTN = QuantizerConfig.create(bits=8,
-                                                                         mode=QuantizationMode.SYMMETRIC,
-                                                                         signedness_to_force=None,
-                                                                         per_channel=False)
-            cls.__DEFAULT_QUANTIZER_CONFIG_BFP = QuantizerConfig.create(bits=5,
-                                                                        mode=QuantizationMode.BLOCKFP,
-                                                                        block_size=32,
-                                                                        exponent_bits=5,
-                                                                        per_channel=False)
-
-        if mode == QuantizationMode.BLOCKFP:
-            return cls.__DEFAULT_QUANTIZER_CONFIG_BFP
-        return cls.__DEFAULT_QUANTIZER_CONFIG_INTN
-=======
->>>>>>> Subclass QuantizerConfig for block floating point and intN quantization using a factory.
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
@@ -563,10 +535,7 @@ class BlockfpQuantizer(BaseQuantizer):
         self.is_weights = config.is_weights
 
         self.exponent_bits = config.exponent_bits
-<<<<<<< HEAD
-=======
         self.bits = config.bits
->>>>>>> Subclass QuantizerConfig for block floating point and intN quantization using a factory.
         self.block_size = config.block_size
         self.scope_string = "scope"
         if config.folded:
@@ -592,11 +561,7 @@ class BlockfpQuantizer(BaseQuantizer):
     def quantize(self, x):
         result = blockfp_quantize(x,
                                   self.exponent_bits,
-<<<<<<< HEAD
-                                  self.num_bits,
-=======
                                   self.bits,
->>>>>>> Subclass QuantizerConfig for block floating point and intN quantization using a factory.
                                   self.block_size,
                                   self.folded_config,
                                   self.is_weights,
@@ -623,11 +588,7 @@ class BlockfpQuantizer(BaseQuantizer):
         if self._export_mode == QuantizerExportMode.BFP_FAKE_QUANTIZE:
             return ExportBlockfp.apply(x,
                                        self.exponent_bits,
-<<<<<<< HEAD
-                                       self.num_bits,
-=======
                                        self.bits,
->>>>>>> Subclass QuantizerConfig for block floating point and intN quantization using a factory.
                                        self.block_size,
                                        self.scope_string,
                                        self.folded_config)
