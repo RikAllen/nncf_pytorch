@@ -4,6 +4,7 @@ Each compression method receives its own hyperparameters that are organized as a
 
 - [Quantization](./compression_algorithms/Quantization.md)
   - Symmetric and asymmetric quantization modes
+  - Block floating point quantisation
   - Signed and unsigned
   - Per tensor/per channel
   - Exports to OpenVINO-supported FakeQuantize ONNX nodes

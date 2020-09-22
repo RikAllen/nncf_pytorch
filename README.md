@@ -135,6 +135,8 @@ Quick jump to sample type:
 |ResNet-50|Mixed, 44.8% INT8 / 55.2% INT4|ImageNet|76.13|76.3|
 |ResNet-50|INT8 + Sparsity 61% (RB)|ImageNet|76.13|75.22|
 |ResNet-50|INT8 + Sparsity 50% (RB)|ImageNet|76.13|75.60|
+|ResNet-50|INT5bfp|ImageNet|76.13|75.61|
+|ResNet-50|INT45bfp|ImageNet|76.13|75.60|
 |ResNet-50|Filter pruning, 30%, magnitude criterion|ImageNet|76.13|75.7|
 |ResNet-50|Filter pruning, 30%, geometric median criterion|ImageNet|76.13|75.7|
 |Inception V3|INT8|ImageNet|77.32|76.96|
@@ -144,12 +146,17 @@ Quick jump to sample type:
 |MobileNet V2|INT8 + Sparsity 52% (RB)|ImageNet|71.81|70.99|
 |SqueezeNet V1.1|INT8|ImageNet|58.18|58.02|
 |SqueezeNet V1.1|Mixed, 54.7% INT8 / 45.3% INT4|ImageNet|58.18|58.85|
+|SqueezeNet V1.1|INT45bfp|ImageNet|58.18|54.898|
 |ResNet-18|XNOR (weights), scale/threshold (activations)|ImageNet|69.76|61.59|
 |ResNet-18|DoReFa (weights), scale/threshold (activations)|ImageNet|69.76|61.56|
 |ResNet-18|Filter pruning, 30%, magnitude criterion|ImageNet|69.76|68.73|
 |ResNet-18|Filter pruning, 30%, geometric median criterion|ImageNet|69.76|68.97|
+|ResNet-18|INT5bfp|ImageNet|69.76|69.436|
+|ResNet-18|INT45bfp|ImageNet|69.76|68.996|
 |ResNet-34|Filter pruning, 30%, magnitude criterion|ImageNet|73.31|72.54|
 |ResNet-34|Filter pruning, 30%, geometric median criterion|ImageNet|73.31|72.62|
+|ResNet-34|INT5bfp|ImageNet|73.31|73.062|PENDING
+|ResNet-34|INT45bfp|ImageNet|73.31|72.81|
 
 #### Object detection
 

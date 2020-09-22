@@ -27,6 +27,7 @@ Below is an example of the NNCF configuration file
             ],
         },
         "hw_config_type": "cpu", // If specified, the compression algorithms will use parameter presets that are more likely to result in best performance on a given HW type. Optional.
+        "hw_config_sub-type": "int5bfp"//When using Block Floating Point quantization a hw_config_subtype must be defined such as int5bfp. Only applicable whenhw_config_type is DLA
         "compression": [ // One or more definitions for the compression algorithms to be applied to the model; either a single JSON object or an array of JSON objects. See README for each compression algorithm for a description of the available config parameters.
             {
                 "algorithm": quantization,

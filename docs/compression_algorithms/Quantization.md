@@ -244,7 +244,9 @@ sparsity and filter pruning algorithms. It can be enabled by setting a non-zero 
         "bits": 8, // Bitwidth to quantize to.
         "signed": true, // Whether to use signed or unsigned input/output values for quantization. If specified as unsigned and the input values during initialization have differing signs, will reset to performing signed quantization instead.
         "per_channel": false, // Whether to quantize inputs per channel (i.e. per 0-th dimension for weight quantization,and per 1-st dimension for activation quantization)
-
+        "mantissa_bits": 8, //For block floating point - number of bits in floating point representation of mantissa value excluding sign and implicit 1 bit
+        "exponent_bits": 8, //For block floating point - number of bits in floating point representation of exponent
+        "block_size": 5, //For block floating point - number of values in a block
         // A list of model control flow graph node scopes to be ignored for this operation - functions as a 'blacklist'. Optional.
         "ignored_scopes": []
 
@@ -256,7 +258,9 @@ sparsity and filter pruning algorithms. It can be enabled by setting a non-zero 
         "bits": 4, // Bitwidth to quantize to.
         "signed": true, // Whether to use signed or unsigned input/output values for quantization. If specified as unsigned and the input values during initialization have differing signs, will reset to performing signed quantization instead.
         "per_channel": false, // Whether to quantize inputs per channel (i.e. per 0-th dimension for weight quantization,and per 1-st dimension for activation quantization)
-
+        "mantissa_bits": 8, //For block floating point - number of bits in floating point representation of mantissa value excluding sign and implicit 1 bit
+        "exponent_bits": 8, //For block floating point - number of bits in floating point representation of exponent
+        "block_size": 5, //For block floating point - number of values in a block
         // A list of model control flow graph node scopes to be ignored for this operation - functions as a 'blacklist'. Optional.
         "ignored_scopes": []
 
@@ -282,6 +286,9 @@ sparsity and filter pruning algorithms. It can be enabled by setting a non-zero 
             "bits": 4, // Bitwidth to quantize to.
             "signed": true, // Whether to use signed or unsigned input/output values for quantization. If specified as unsigned and the input values during initialization have differing signs, will reset to performing signed quantization instead.
             "per_channel": false // Whether to quantize inputs per channel (i.e. per 0-th dimension for weight quantization,and per 1-st dimension for activation quantization)
+            "mantissa_bits": 8, //For block floating point - number of bits in floating point representation of mantissa value excluding sign and implicit 1 bit
+            "exponent_bits": 8, //For block floating point - number of bits in floating point representation of exponent
+            "block_size": 5, //For block floating point - number of values in a block
         }
     },
 
@@ -293,6 +300,8 @@ sparsity and filter pruning algorithms. It can be enabled by setting a non-zero 
 
     // Determines how should the additional quantization operations be exported into the ONNX format. Set this to false for export to OpenVINO-supported FakeQuantize ONNX, or to true for export to ONNX standard QuantizeLinear-DequantizeLinear node pairs (8-bit quantization only in the latter case). Default: false
     "export_to_onnx_standard_ops": false
+    //By default, block floating point mode does not export fakeQuantisationBfp nodes to onnx since they are not required. This enables for debug
+    "export_to_onnx_block_floating_point": false
 }
 ```
 
