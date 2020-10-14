@@ -22,6 +22,6 @@
   "compression": {
     "algorithm": "quantization",
     "logfile_name": "int7bfp",
-    "export_to_onnx_block_floating_point": true 
+    "export_to_onnx_block_floating_point": false 
   }
 }
