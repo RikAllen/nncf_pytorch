@@ -2,14 +2,29 @@
     "target_device": "DLA",
     "config": {
         "quantization": {
-            "int7bfp32": {
+            "bfp_act": {
                 "bits": 7,
                 "exponent_bits": 5,
                 "block_size": 32,
                 "mode": "blockfp",
                 "granularity": "perblock"
             },
-            "int7bfp32_folded": {
+            "bfp_act_folded": {
+                "bits": 7,
+                "exponent_bits": 5,
+                "block_size": 32,
+                "mode": "blockfp",
+                "granularity": "perblock",
+                "folded":true
+            },
+            "bfp_weight": {
+                "bits": 7,
+                "exponent_bits": 5,
+                "block_size": 32,
+                "mode": "blockfp",
+                "granularity": "perblock"
+            },
+            "bfp_weight_folded": {
                 "bits": 7,
                 "exponent_bits": 5,
                 "block_size": 32,
@@ -23,36 +38,36 @@
         {
             "type": "Convolution",
             "quantization": {
-                "activations": "int7bfp32",
-                "weights": "int7bfp32"
+                "activations": "bfp_act",
+                "weights": "bfp_weight"
             }
         },
         {
             "type": "DepthWiseConvolution",
             "quantization": {
-                "activations": "int7bfp32",
-                "weights": "int7bfp32"
+                "activations": "bfp_act",
+                "weights": "bfp_weight"
             }
         },
         {
             "type": "FoldedConvolution",
             "quantization": {
-                "activations": "int7bfp32_folded",
-                "weights": "int7bfp32_folded"
+                "activations": "bfp_act_folded",
+                "weights": "bfp_weight_folded"
             }
         },
         {
             "type": "MatMul",
             "quantization": {
-                "activations": "int7bfp32",
-                "weights": "int7bfp32"
+                "activations": "bfp_act",
+                "weights": "bfp_weight"
             }
         },
         {
             "type": "Add",
             "quantization": {
-                "activations": "int7bfp32",
-                "weights": "int7bfp32"
+                "activations": "bfp_act",
+                "weights": "bfp_weight"
             }
         },
         {
@@ -61,8 +76,8 @@
                 "scales": "unified"
             },
             "quantization": {
-                "activations": "int7bfp32",
-                "weights": "int7bfp32"
+                "activations": "bfp_act",
+                "weights": "bfp_weight"
             }
         },
         {"type": "Reshape"},

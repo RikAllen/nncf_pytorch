@@ -5,14 +5,14 @@
             "bfp_act": {
                 "bits": 7,
                 "exponent_bits": 5,
-                "block_size": 16,
+                "block_size": 8,
                 "mode": "blockfp",
                 "granularity": "perblock"
             },
             "bfp_act_folded": {
                 "bits": 7,
                 "exponent_bits": 5,
-                "block_size": 16,
+                "block_size": 8,
                 "mode": "blockfp",
                 "granularity": "perblock",
                 "folded":true
@@ -20,14 +20,14 @@
             "bfp_weight": {
                 "bits": 7,
                 "exponent_bits": 5,
-                "block_size": 16,
+                "block_size": 8,
                 "mode": "blockfp",
                 "granularity": "perblock"
             },
             "bfp_weight_folded": {
                 "bits": 7,
                 "exponent_bits": 5,
-                "block_size": 16,
+                "block_size": 8,
                 "mode": "blockfp",
                 "granularity": "perblock",
                 "folded":true
