@@ -426,18 +426,18 @@ def train_epoch(train_loader, model, criterion, optimizer, compression_ctrl, epo
                     rank='{}:'.format(config.rank) if config.multiprocessing_distributed else ''
                 ))
 
-        if is_main_process():
-            global_step = len(train_loader) * epoch
-            config.tb.add_scalar("train/learning_rate", get_lr(optimizer), i + global_step)
-            config.tb.add_scalar("train/criterion_loss", criterion_losses.avg, i + global_step)
-            config.tb.add_scalar("train/compression_loss", compression_losses.avg, i + global_step)
-            config.tb.add_scalar("train/loss", losses.avg, i + global_step)
-            config.tb.add_scalar("train/top1", top1.avg, i + global_step)
-            config.tb.add_scalar("train/top5", top5.avg, i + global_step)
+            if is_main_process():
+                global_step = len(train_loader) * epoch
+                config.tb.add_scalar("train/learning_rate", get_lr(optimizer), i + global_step)
+                config.tb.add_scalar("train/criterion_loss", criterion_losses.avg, i + global_step)
+                config.tb.add_scalar("train/compression_loss", compression_losses.avg, i + global_step)
+                config.tb.add_scalar("train/loss", losses.avg, i + global_step)
+                config.tb.add_scalar("train/top1", top1.avg, i + global_step)
+                config.tb.add_scalar("train/top5", top5.avg, i + global_step)
 
-            for stat_name, stat_value in compression_ctrl.statistics().items():
-                if isinstance(stat_value, (int, float)):
-                    config.tb.add_scalar('train/statistics/{}'.format(stat_name), stat_value, i + global_step)
+                for stat_name, stat_value in compression_ctrl.statistics().items():
+                    if isinstance(stat_value, (int, float)):
+                        config.tb.add_scalar('train/statistics/{}'.format(stat_name), stat_value, i + global_step)
 
 
 def validate(val_loader, model, criterion, config):
