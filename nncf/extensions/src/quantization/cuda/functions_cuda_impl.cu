@@ -526,8 +526,8 @@ std::vector<at::Tensor> q_cuda_backward(
 __global__ void block_align_floats_kernel(float* out, float* in, uint32_t exp_width,
     uint32_t mantissa_width, uint32_t block_size,  uint32_t N, uint32_t C, uint32_t HxW, bool sw_rnd) {
  
-  int n  = blockIdx.x;
-  int hw = blockIdx.y;
+  int n  = blockIdx.x / HxW;
+  int hw = blockIdx.x % HxW;
   int c  = blockIdx.z;
   int b  = threadIdx.x;
 
@@ -668,7 +668,8 @@ at::Tensor bfp_cuda_forward(
   bool sw_rnd = is_weights;
  
   auto output = at::empty_like(input);
-  dim3 numBlocks (N, HxW, std::ceil(C/ (float) (block_size)));
+  // printf ("N = %d, HxW = %d, N*HxW = %d\n", N, HxW, N * HxW);
+  dim3 numBlocks (N * HxW, 1, std::ceil(C/ (float) (block_size)));
   dim3 threadsPerBlock (block_size);
 
   AT_DISPATCH_FLOATING_TYPES(input.type(), "bfp_cuda_forward", ([&] {
