@@ -20,7 +20,7 @@
   },
   "compression": {
     "algorithm": "quantization",
-    "logfile_name": "int5bfp_mixed_1.6",
+    "logfile_name": "int5bfp_mixed_2.2",
     "initializer": {
         "precision": {
             "type": "hawq",
@@ -31,7 +31,7 @@
             "num_data_points": 100,
             "iter_number": 200,
             "tolerance": 1e-4,
-            "compression_ratio": 1.6,
+            "compression_ratio": 2.2,
             "cost_function": "multipass"
         }
     },
