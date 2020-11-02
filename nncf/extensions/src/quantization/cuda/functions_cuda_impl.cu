@@ -650,15 +650,15 @@ __global__ void block_align_folded_inputs_kernel(float *out, float *in, uint32_t
 // double-check dimensions against CUDA limits
 // https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#features-and-technical-specifications
 // Exceeding these limits will lead to incorrect calculations, silently.
-void check_CUDA_block_dims (dim3 numBlocks) {
-  assert (numBlocks.x < ((1<<31)-1);
-  assert (numBlocks.y < 65535);
-  assert (numBlocks.z < 65535);
+void check_CUDA_block_dims (dim3 num_blocks) {
+  assert (num_blocks.x < ((1L<<31)-1));
+  assert (num_blocks.y < 65535);
+  assert (num_blocks.z < 65535);
 }
-void check_CUDA_Thread_Dims (dim3 ThreadsPerBlock) {
-  assert (threadsPerBlock.x < 1024);
-  assert (threadsPerBlock.y < 1024);
-  assert (threadsPerBlock.z < 64);
+void check_CUDA_thread_dims (dim3 threads_per_block) {
+  assert (threads_per_block.x < 1024);
+  assert (threads_per_block.y < 1024);
+  assert (threads_per_block.z < 64);
 }
 
 at::Tensor bfp_cuda_forward(
@@ -683,15 +683,15 @@ at::Tensor bfp_cuda_forward(
   // printf ("N = %d, HxW = %d, N*HxW = %d\n", N, HxW, N * HxW);
   // dim3 numBlocks (N, HxW, std::ceil(C/ (float) (block_size)));
   // dim3 numBlocks (N * HxW, 1, std::ceil(C/ (float) (block_size)));
-  dim3 numBlocks (HxW, N, std::ceil(C/ (float) (block_size)));
-  dim3 threadsPerBlock (block_size);
+  dim3 num_blocks (HxW, N, std::ceil(C/ (float) (block_size)));
+  dim3 threads_per_block (block_size);
 
   assert (BLOCKFP_MAX_BLOCK_SIZE >= block_size);
-  check_CUDA_block_dims(numBlocks);
-  check_CUDA_thread_dims(threadsPerBlock);
+  check_CUDA_block_dims(num_blocks);
+  check_CUDA_thread_dims(threads_per_block);
 
   AT_DISPATCH_FLOATING_TYPES(input.type(), "bfp_cuda_forward", ([&] {
-    block_align_floats_kernel<<< numBlocks, threadsPerBlock >>>(
+    block_align_floats_kernel<<< num_blocks, threads_per_block >>>(
         (float*)output.data_ptr(),
         (float*)input.data_ptr(),
         exp_width, mantissa_width, block_size, 
@@ -724,15 +724,15 @@ at::Tensor bfp_cuda_forward_fold(
     int32_t w_end = std::ceil((W + 2 * PX) / (float) SX);
     int32_t h_end = std::ceil((H + 2 * PY) / (float) SY);
 
-    dim3 numBlocks(N, w_end, h_end);
-    dim3 threadsPerBlock (C, SY, SX);
+    dim3 num_blocks(N, w_end, h_end);
+    dim3 threads_per_block (C, SY, SX);
 
     assert (BLOCKFP_MAX_BLOCK_SIZE >= block_size);
-    check_CUDA_block_dims(numBlocks);
-    check_CUDA_thread_dims(threadsPerBlock);
+    check_CUDA_block_dims(num_blocks);
+    check_CUDA_thread_dims(threads_per_block);
 
     AT_DISPATCH_FLOATING_TYPES(input.type(), "bfp_cuda_forward_fold", ([&] {
-      block_align_folded_inputs_kernel<<<numBlocks, threadsPerBlock>>>(
+      block_align_folded_inputs_kernel<<<num_blocks, threads_per_block>>>(
         (float*)output.data_ptr(), 
         (float*)input.data_ptr(),
         exp_width, mantissa_width, block_size, 
