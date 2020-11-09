@@ -1,0 +1,23 @@
+{
+  "input_info": {
+    "sample_size": [32, 3, 416, 416]
+  },
+  "hw_config_type": "dla",
+  "hw_config_subtype": "int54bfp",  
+  "log_dir": "nncf",
+  "compression": {
+    "algorithm": "quantization",
+    "initializer": {
+      "range": {
+          "num_init_steps": 0
+        }
+    },
+    "logfile_name": "int7bfp",
+    "ignored_scopes": ["Darknet/ModuleList[module_list]/YOLOLayer[16]",
+                        "Darknet/ModuleList[module_list]/YOLOLayer[23]",
+                        "Darknet/ModuleList[module_list]/Sequential[15]/Conv2d[Conv2d]",
+                        "Darknet/ModuleList[module_list]/Sequential[22]/Conv2d[Conv2d]"]
+    // "export_to_onnx_block_floating_point": true
+  }
+}
+
