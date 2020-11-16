@@ -71,7 +71,7 @@ index 4d68438..6ecf9b0 100644
 +        if not retrained:
 +            model.load_state_dict(torch.load(weights, map_location="cuda:0")['model'])                
 +        
-+        config_path = "../tinyyolov3_Ultralytics.json"
++        config_path = "Additional/tinyyolov3_Ultralytics.json"
 +        nncf_config = Config.from_json(config_path)
 +        compression_ctrl, model = create_compressed_model(model, nncf_config, dummy_forward_fn=dummy_forward)
 +
@@ -103,7 +103,7 @@ index 4d68438..6ecf9b0 100644
 +        ### To export a compressed model to ONNX. Set opset_version in compression_method_api.py of NNCF: 
 +        ###   10 if < OpenVINO 2021.1, 11 otherwise
 +        if retrained and ONNX_EXPORT:
-+            model_name = "test" #TinyYOLOv3_unretrained_unfused_int54bfpconfig_opset11
++            model_name = "onnxname" # Change for onnx name
 +            compression_ctrl.export_model("onnxFiles/" + model_name + ".onnx")
 +            exit()
 +
@@ -187,7 +187,7 @@ index 1aba8d2..a7f4a4a 100644
                                               pin_memory=True,
                                               collate_fn=dataset.collate_fn)
 +    #### NNCF ####
-+    config_path = "../tinyyolov3_Ultralytics.json"
++    config_path = "Additional/tinyyolov3_Ultralytics.json"
 +    nncf_config = Config.from_json(config_path)
 +       
 +    criterion = nn.CrossEntropyLoss()
@@ -216,6 +216,7 @@ index 1aba8d2..a7f4a4a 100644
              dataset.indices = random.choices(range(dataset.n), weights=image_weights, k=dataset.n)  # rand weighted idx
  
          mloss = torch.zeros(4).to(device)  # mean losses
++        # print learning rate
 +        print(optimizer.param_groups[0]['lr'])
          print(('\n' + '%10s' * 8) % ('Epoch', 'gpu_mem', 'GIoU', 'obj', 'cls', 'total', 'targets', 'img_size'))
          pbar = tqdm(enumerate(dataloader), total=nb)  # progress bar
@@ -288,7 +289,7 @@ index 6bb8180..a507f14 100755
 -                    with open(file, 'r') as f:
 +                    # with open(file, 'r') as f:
 +                    # for i, file in enumerate(pbar):
-+                    with open(os.path.join('/media/cuderona/e45a3166-8222-4a6f-87ac-2cc3dd80c22e/COCO/dev/ultralytics_yolov3/coco/',file), 'r') as f:
++                    with open(os.path.join('/pathto/coco/',file), 'r') as f: # Change path
                          l = np.array([x.split() for x in f.read().splitlines()], dtype=np.float32)
                  except:
                      nm += 1  # print('missing labels for image %s' % self.img_files[i])  # file missing
@@ -298,7 +299,7 @@ index 6bb8180..a507f14 100755
          path = self.img_files[index]
 -        img = cv2.imread(path)  # BGR
 +        # img = cv2.imread(path)  # BGR
-+        img = cv2.imread(os.path.join('pathto/COCO/dev/ultralytics_yolov3/coco/',path))  # BGR
++        img = cv2.imread(os.path.join('pathto/coco/',path))  # Change path
          assert img is not None, 'Image Not Found ' + path
          h0, w0 = img.shape[:2]  # orig hw
          r = self.img_size / max(h0, w0)  # resize image to img_size
