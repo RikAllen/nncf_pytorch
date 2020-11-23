@@ -8,15 +8,17 @@
   },
   "num_classes": 1000,
   "batch_size": 64,
-  "epochs": 8,
+  "epochs": 32,
   "multiprocessing_distributed": true,
   "optimizer": {
-    "type": "Adam",
-    "base_lr": 0.00001,
-    "schedule_type": "multistep",
-    "steps": [
-        1,6
-    ]
+      "type": "Adam",
+      "base_lr": 0.00001,
+      "schedule_type": "plateau",
+      "scheduler_params": {
+        "threshold": 0.1,
+        "cooldown": 3,
+        "patience": 3
+        }
   },
   "compression": {
     "algorithm": "quantization",

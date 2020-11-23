@@ -1,0 +1,39 @@
+{
+    "model": "mobilenet_v2",
+    "pretrained": true,
+    "input_info": {
+      "sample_size": [2, 3, 224, 224]
+    },
+    "num_classes": 1000,
+    "batch_size" : 80,
+    "epochs": 32,
+    "multiprocessing_distributed": true,
+    "optimizer": {
+        "type": "Adam",
+        "base_lr": 0.00001,
+        "schedule_type": "plateau",
+        "scheduler_params": {
+          "threshold": 0.1,
+          "cooldown": 3,
+          "patience": 3
+          }
+    },
+    "compression": {
+        "algorithm": "quantization",
+        "initializer": {
+            "range": {
+                "num_init_steps": 10
+            }
+        },
+        "activations": {
+            "mode": "symmetric",
+            "bits": 5
+                
+        },
+        "weights": {
+            "mode": "symmetric",
+            "bits": 5
+                
+        }
+    }
+}

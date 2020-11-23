@@ -5,15 +5,18 @@
       "sample_size": [2, 3, 224, 224]
     },
     "num_classes": 1000,
-    "batch_size" : 256,
-    "epochs": 5,
+    "batch_size" : 80,
+    "epochs": 32,
+    "multiprocessing_distributed": true,
     "optimizer": {
         "type": "Adam",
         "base_lr": 0.00001,
-        "schedule_type": "multistep",
-        "steps": [
-            5
-        ]
+        "schedule_type": "plateau",
+        "scheduler_params": {
+          "threshold": 0.1,
+          "cooldown": 3,
+          "patience": 3
+          }
     },
     "compression": {
         "algorithm": "quantization",
@@ -21,6 +24,16 @@
             "range": {
                 "num_init_steps": 10
             }
+        },
+        "activations": {
+            "mode": "symmetric",
+            "bits": 8
+                
+        },
+        "weights": {
+            "mode": "symmetric",
+            "bits": 8
+                
         }
     }
 }

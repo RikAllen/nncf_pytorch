@@ -1,0 +1,27 @@
+echo 45_32
+python main.py -m test --config configs/quantization/resnet18_imagenet/int45bfp/bs32/cfg.json --data /media/cnn/datasets 
+echo 45_16
+python main.py -m test --config configs/quantization/resnet18_imagenet/int45bfp/bs16/cfg.json --data /media/cnn/datasets |& grep "\*"
+echo 45_8
+python main.py -m test --config configs/quantization/resnet18_imagenet/int45bfp/bs8/cfg.json --data /media/cnn/datasets  |& grep "\*"
+echo 45_4
+python main.py -m test --config configs/quantization/resnet18_imagenet/int45bfp/bs4/cfg.json --data /media/cnn/datasets  |& grep "\*"
+echo 45_2
+python main.py -m test --config configs/quantization/resnet18_imagenet/int45bfp/bs2/cfg.json --data /media/cnn/datasets  |& grep "\*"
+echo 45_1
+python main.py -m test --config configs/quantization/resnet18_imagenet/int45bfp/bs1/cfg.json --data /media/cnn/datasets  |& grep "\*"
+
+echo 54_32
+python main.py -m test --config configs/quantization/resnet18_imagenet/int54bfp/bs32/cfg.json --data /media/cnn/datasets 
+echo 54_16
+python main.py -m test --config configs/quantization/resnet18_imagenet/int54bfp/bs16/cfg.json --data /media/cnn/datasets |& grep "\*"
+echo 54_8
+python main.py -m test --config configs/quantization/resnet18_imagenet/int54bfp/bs8/cfg.json --data /media/cnn/datasets  |& grep "\*"
+echo 54_4
+python main.py -m test --config configs/quantization/resnet18_imagenet/int54bfp/bs4/cfg.json --data /media/cnn/datasets  |& grep "\*"
+echo 54_2
+python main.py -m test --config configs/quantization/resnet18_imagenet/int54bfp/bs2/cfg.json --data /media/cnn/datasets  |& grep "\*"
+echo 54_1
+python main.py -m test --config configs/quantization/resnet18_imagenet/int54bfp/bs1/cfg.json --data /media/cnn/datasets  |& grep "\*"
+
+

@@ -1,0 +1,1 @@
+python main.py -m train --config configs/quantization/mobilenet_v2_imagenet_int8.json --data /media/cnn/datasets --log-dir mobilenet_runs_int

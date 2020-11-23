@@ -1,0 +1,85 @@
+#echo 4_32
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int4bfp/bs32/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+#echo 5_32
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int5bfp/bs32/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+#echo 45_32
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int45bfp/bs32/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+#echo 54_32
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int54bfp/bs32/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+#echo 6_32
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int6bfp/bs32/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+#echo 7_32
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int7fp/bs32/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+
+
+#echo 4_16
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int4bfp/bs16/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+#echo 5_16
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int5bfp/bs16/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+#echo 45_16
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int45bfp/bs16/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+#echo 54_16
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int54bfp/bs16/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+#echo 6_16
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int6bfp/bs16/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 7_16
+python main.py -m train --config configs/quantization/resnet18_imagenet/int7fp/bs16/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+
+
+#echo 4_8
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int4bfp/bs8/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 5_8
+python main.py -m train --config configs/quantization/resnet18_imagenet/int5bfp/bs8/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+#echo 45_8
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int45bfp/bs8/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 54_8
+python main.py -m train --config configs/quantization/resnet18_imagenet/int54bfp/bs8/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+#echo 6_8
+#python main.py -m train --config configs/quantization/resnet18_imagenet/int6bfp/bs8/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 7_8
+python main.py -m train --config configs/quantization/resnet18_imagenet/int7fp/bs8/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+
+
+echo 4_4
+python main.py -m train --config configs/quantization/resnet18_imagenet/int4bfp/bs4/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 5_4
+python main.py -m train --config configs/quantization/resnet18_imagenet/int5bfp/bs4/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 45_4
+python main.py -m train --config configs/quantization/resnet18_imagenet/int45bfp/bs4/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 54_4
+python main.py -m train --config configs/quantization/resnet18_imagenet/int54bfp/bs4/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 6_4
+python main.py -m train --config configs/quantization/resnet18_imagenet/int6bfp/bs4/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 7_4
+python main.py -m train --config configs/quantization/resnet18_imagenet/int7fp/bs4/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+
+
+echo 4_2
+python main.py -m train --config configs/quantization/resnet18_imagenet/int4bfp/bs2/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 5_2
+python main.py -m train --config configs/quantization/resnet18_imagenet/int5bfp/bs2/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 45_2
+python main.py -m train --config configs/quantization/resnet18_imagenet/int45bfp/bs2/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 54_2
+python main.py -m train --config configs/quantization/resnet18_imagenet/int54bfp/bs2/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 6_2
+python main.py -m train --config configs/quantization/resnet18_imagenet/int6bfp/bs2/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 7_2
+python main.py -m train --config configs/quantization/resnet18_imagenet/int7fp/bs2/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+
+
+echo 4_1
+python main.py -m train --config configs/quantization/resnet18_imagenet/int4bfp/bs1/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 5_1
+python main.py -m train --config configs/quantization/resnet18_imagenet/int5bfp/bs1/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 45_1
+python main.py -m train --config configs/quantization/resnet18_imagenet/int45bfp/bs1/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 54_1
+python main.py -m train --config configs/quantization/resnet18_imagenet/int54bfp/bs1/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 6_1
+python main.py -m train --config configs/quantization/resnet18_imagenet/int6bfp/bs1/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+echo 7_1
+python main.py -m train --config configs/quantization/resnet18_imagenet/int7fp/bs1/cfg.json --data /media/cnn/datasets --log-dir resnet_runs
+
+
+
